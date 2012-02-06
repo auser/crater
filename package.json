@@ -1,0 +1,17 @@
+{
+  "author": "Ari Lerner ",
+  "name": "bundler",
+  "description": "A simple bundler for node.js apps",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/auser/bundler.git"
+  },
+  "dependencies": {
+    "uglify-js":"1.2.5"
+  },
+  "devDependencies": {
+    "jasmine-node":"1.x.x"
+  }
+}
+
