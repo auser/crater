@@ -2,7 +2,7 @@
   "author": "Ari Lerner ",
   "name": "crater",
   "description": "A simple crater for node.js apps",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/auser/crater.git"
