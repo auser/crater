@@ -1,20 +1,20 @@
-## Bundler
+## Crater
 
-A quick and dirty bundler of files that can take a directory of files and concatenate them together for
+A quick and dirty crater of files that can take a directory of files and concatenate them together for
 dirty packaging. It even minimizes them too!
 
 ## Usage
 
-    var bundler = require('bundler');
+    var crater = require('crater');
 
-    bundler.bundle({
+    crater.bundle({
       'dir': __dirname + '/public/js', 
       outFile: __dirname + '/public/bundle.js'
     });
 
 You can also pass a function to run through all the files with... for instance
 
-    bundler.bundle({'dir': __dirname + '/public/js', outFile: __dirname + '/public/bundle.js'}, function(file) {
+    crater.bundle({'dir': __dirname + '/public/js', outFile: __dirname + '/public/bundle.js'}, function(file) {
       return "File: " + path.basename(file) + " \n" +fs.readFileSync(file, 'utf-8');
     });
 

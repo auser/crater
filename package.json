@@ -1,11 +1,11 @@
 {
   "author": "Ari Lerner ",
-  "name": "bundler",
-  "description": "A simple bundler for node.js apps",
+  "name": "crater",
+  "description": "A simple crater for node.js apps",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/auser/bundler.git"
+    "url": "git://github.com/auser/crater.git"
   },
   "dependencies": {
     "uglify-js":"1.2.5"
