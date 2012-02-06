@@ -21,27 +21,40 @@ var findAllFiles = function (path, all_files) {
 
 // In case the user forgets to pass a function,
 // this is the default function that all the files will call
-function defaultFileRead(file) {return fs.readFileSync(file, 'utf-8');}
+function defaultFileRead(file, format) {
+    if (format === undefined) {format = 'utf8';}
+    return fs.readFileSync(file, format);
+}
 
 exports.bundle = function(opts, string_func) {
     
-    opts            = opts || {};
-    opts.outFile    = opts.outFile || 'bundle.js';
-    opts.dir        = opts.dir || __dirname;
+    opts                = opts || {};
+    opts.outFile        = opts.outFile || 'bundle.js';
+    opts.dir            = opts.dir || __dirname;
+    opts.minimizeJS     = opts.minimizeJS || false;
+    opts.format         = opts.format || 'utf8';
+    opts.ignorePattern  = opts.ignorePattern || /\.DS_Store/;
+    opts.prepend        = opts.prepend || '';
+    opts.append         = opts.append || '';
     
     if (string_func === undefined) {string_func = defaultFileRead;}
 
     var files = findAllFiles(opts.dir, []);
 
-    var bundle = '';
+    var bundle = opts.prepend;
     files.forEach(function(file) {
-        bundle += string_func(file);
+        if (!file.match(opts.ignorePattern)) {
+            bundle += string_func(file, opts.format);
+        }
     });
+    bundle += opts.append;
 
-    var ast = parser.parse(bundle);
-    ast = uglifyer.ast_mangle(ast);
-    ast = uglifyer.ast_squeeze(ast);
-    bundle = uglifyer.gen_code(ast);
+    if (opts.minimizeJS) {
+        var ast = parser.parse(bundle);
+        ast = uglifyer.ast_mangle(ast);
+        ast = uglifyer.ast_squeeze(ast);
+        bundle = uglifyer.gen_code(ast);
+    }
 
-    fs.writeFileSync(opts.outFile, bundle, 'utf8');
+    fs.writeFileSync(opts.outFile, bundle, opts.format);
 };
