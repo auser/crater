@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/auser/crater.png)](http://travis-ci.org/auser/crater)
 ## Crater
 
 A quick and dirty crater of files that can take a directory of files and concatenate them together for
